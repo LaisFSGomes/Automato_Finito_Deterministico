@@ -1,47 +1,54 @@
-qtd_estados = input('quantidade de estados: ')
+# Programa que lê um AFD com o alfabeto {a, b}
+#Autor: Lais de Fátima Sousa Gomes
 
 #Estados
 Q = []
-for i in range(int(qtd_estados)): 
-  a = input('digite o estado: ')
-  Q.append(a)
+#quando terminar de escrever os estados, digite "vazio" que será o estado vazio
+est_temp = ''
+while est_temp != 'vazio':
+  est_temp = input('digite o nome do estado - para finalizar, escreva o estado vazio como "vazio": ')
+  Q.append(est_temp)
+
+qtd_estados  = len(Q)
 
 
-#estado inicial e final
+
+#estado inicial
 q0 = input("dos estados em Q, qual é o estado inicial? ")
-a = input("digite a quantidade de estados finais: ")
-F = []
-for i in range(int(a)):
-  b = input("estado final: ")
-  F.append(b)
 
-print("estados")
-print(Q)
-print('estado inicial: ')
-print(q0)
-print('estado final: ')
-print(F)
+
+#estados finais
+F = []
+val = ''
+while val != 'fim':
+    val = input('digite o nome do estado final - para finalizar, escreva "fim": ')
+    if val != 'fim':
+      F.append(val)
+
+
+
 
 #função de transição
 func_trans = {}
 for i in Q:
-  conca = 'valor para o estado '+ i + ' em a'
-  valA = input(conca)
-  concb = 'valor para o estado '+ i + ' em b'
-  valB = input(concb)
+  concA = 'valor para o estado '+ i + ' em a'
+  valA = input(concA)
+  concB = 'valor para o estado '+ i + ' em b'
+  valB = input(concB)
   func_trans[(i, 'a')] = valA
   func_trans[(i, 'b')] = valB
 
-print(func_trans)
 
-def afd(delta, q0, F, cadeia):
-  qA = q0
-  for s in cadeia:
-    qA = delta[(qA, s)]
-  return qA in F
+palavra = input('palavra que se deseja processar: ')
+qAtual = q0
+for i in palavra:
+  qAtual = func_trans[(qAtual, i)]
 
-resp = afd(func_trans, q0, F, 'abab')
-print(resp)
+if qAtual in F:
+  print('ACEITA')
+else:
+  print('REJEITA')
+
 
   
   
