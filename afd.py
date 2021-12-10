@@ -1,4 +1,4 @@
-
+#
 #                       TEORIA DOS AUTOMATOS E LINGUAGENS FORMAIS
 #        Programaque simula o processamento de qualquer AFD sob o alfabeto {a, b}
 #
@@ -55,6 +55,8 @@ def Delta(Q):
       valB = input('valor para o estado '+ i + ' em b: ')
       func_trans[(i, 'a')] = valA
       func_trans[(i, 'b')] = valB
+    func_trans[('vazio', 'a')] = 'vazio'
+    func_trans[('vazio', 'b')] = 'vazio'
   return func_trans
 
 
